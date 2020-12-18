@@ -11,11 +11,11 @@ namespace Employee_Manager.Classes
     {
         public int code { get; set; }
         public meta meta { get; set; }
+        public IEnumerable<User> data { get; set; }
     }
     public class meta
     {
         public pagination pagination { get; set; }
-        public IEnumerable<User> data { get; set; }
     }
     public class pagination
     {
@@ -31,7 +31,13 @@ namespace Employee_Manager.Classes
         public string email { get; set; }
         public string gender { get; set; }
         public string status { get; set; }
-        public string created_at { get; set; }
-        public string updated_at { get; set; }
+        public DateTime created_at { get; set; }
+        public DateTime updated_at { get; set; }
+    }
+    public class UserSearchData
+    {
+        public int code { get; set; }
+        public meta meta { get; set; }
+        public User data { get; set; }
     }
 }

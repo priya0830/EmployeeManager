@@ -12,6 +12,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//using System.Text.Json;
 
 namespace Employee_Manager
 {
@@ -26,20 +27,21 @@ namespace Employee_Manager
         private async void btnViewAll_Click(object sender, EventArgs e)
         {
             // get details from API
-            var result = await GetUserDetailsAsync();
+            var userdata = await GetUserDetailsAsync();
             // parse into class
-            UsersData UserDetails = JsonConvert.DeserializeObject<UsersData>(result);
+            //UsersData UserDetails = JsonConvert.DeserializeObject<UsersData>(result);
 
 
-            Forms.ViewDetails view = new Forms.ViewDetails(UserDetails);
+            Forms.ViewDetails view = new Forms.ViewDetails(userdata);
 
             view.Show();
 
             // show them on screen
 
+
         }
 
-        private async Task<string> GetUserDetailsAsync()
+        private async Task<UsersData> GetUserDetailsAsync()
         {
             using(var httpClient = new HttpClient())
             {
@@ -54,27 +56,22 @@ namespace Employee_Manager
                     if(response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();
-
-                        var strResult = JsonConvert.DeserializeObject<UsersData>(result.Replace(" ", ""));
-                        
-                        var res = JsonConvert.DeserializeObject(result);
-
-                        return result;
+                        var strResult = JsonConvert.DeserializeObject<UsersData>(result);                        
+                        return strResult;
                     }
                     else
                     {
                         var result = response.Content.ReadAsStringAsync().Result;
-
                     }
                 }
                 catch(Exception ex)
                 {
-
+                    MessageBox.Show("Error, please retry");
                 }
 
             }
 
-            return "";
+            return null;
         }
          
 
@@ -88,14 +85,19 @@ namespace Employee_Manager
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("To Implement");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("To Implement");
         }
 
-        
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Forms.Search search = new Forms.Search();
+            
+            search.Show();
+        }
     }
 }

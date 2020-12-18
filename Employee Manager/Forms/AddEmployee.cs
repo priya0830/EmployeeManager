@@ -26,11 +26,11 @@ namespace Employee_Manager.Forms
             User userdata = new User()
             {
                 name = txtName.Text,
-                gender = txtGender.Text,
+                gender = comboGender.SelectedItem.ToString(),
                 status = comboStatus.SelectedItem.ToString(),
                 email = txtEmail.Text,
-                created_at = dateCreated.Value.ToString(),
-                updated_at = dateUpdated.Value.ToString()
+                created_at = dateCreated.Value, //.ToString(),
+                updated_at = dateUpdated.Value, //.ToString()
             };
 
             await AddRecord(userdata);
@@ -43,6 +43,7 @@ namespace Employee_Manager.Forms
                 httpClient.BaseAddress = new Uri("https://gorest.co.in/public-api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "fa114107311259f5f33e70a5d85de34a2499b4401da069af0b1d835cd5ec0d56");
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
                 try
                 {
@@ -56,9 +57,8 @@ namespace Employee_Manager.Forms
                     {
                         var result = await response.Content.ReadAsStringAsync();
 
-                        var strResult = JsonConvert.DeserializeObject<UsersData>(result.Replace(" ", ""));
-
                         var res = JsonConvert.DeserializeObject(result);
+                        MessageBox.Show("Success");
 
                         //return result;
                     }

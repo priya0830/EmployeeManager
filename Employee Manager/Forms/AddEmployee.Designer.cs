@@ -32,7 +32,6 @@ namespace Employee_Manager.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.txtGender = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -45,6 +44,7 @@ namespace Employee_Manager.Forms
             this.dateUpdated = new System.Windows.Forms.DateTimePicker();
             this.btnCreatedNow = new System.Windows.Forms.Button();
             this.btnUpdatedNow = new System.Windows.Forms.Button();
+            this.comboGender = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -70,14 +70,7 @@ namespace Employee_Manager.Forms
             this.txtName.Location = new System.Drawing.Point(237, 132);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(236, 26);
-            this.txtName.TabIndex = 2;
-            // 
-            // txtGender
-            // 
-            this.txtGender.Location = new System.Drawing.Point(237, 208);
-            this.txtGender.Name = "txtGender";
-            this.txtGender.Size = new System.Drawing.Size(236, 26);
-            this.txtGender.TabIndex = 4;
+            this.txtName.TabIndex = 1;
             // 
             // label3
             // 
@@ -102,7 +95,7 @@ namespace Employee_Manager.Forms
             this.txtEmail.Location = new System.Drawing.Point(237, 341);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(236, 26);
-            this.txtEmail.TabIndex = 8;
+            this.txtEmail.TabIndex = 4;
             // 
             // label5
             // 
@@ -150,7 +143,7 @@ namespace Employee_Manager.Forms
             this.comboStatus.Location = new System.Drawing.Point(237, 280);
             this.comboStatus.Name = "comboStatus";
             this.comboStatus.Size = new System.Drawing.Size(236, 28);
-            this.comboStatus.TabIndex = 14;
+            this.comboStatus.TabIndex = 3;
             // 
             // dateCreated
             // 
@@ -186,11 +179,24 @@ namespace Employee_Manager.Forms
             this.btnUpdatedNow.UseVisualStyleBackColor = true;
             this.btnUpdatedNow.Click += new System.EventHandler(this.btnUpdatedNow_Click);
             // 
+            // comboGender
+            // 
+            this.comboGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboGender.FormattingEnabled = true;
+            this.comboGender.Items.AddRange(new object[] {
+            "Female",
+            "Male"});
+            this.comboGender.Location = new System.Drawing.Point(230, 211);
+            this.comboGender.Name = "comboGender";
+            this.comboGender.Size = new System.Drawing.Size(243, 28);
+            this.comboGender.TabIndex = 2;
+            // 
             // AddEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1436, 655);
+            this.Controls.Add(this.comboGender);
             this.Controls.Add(this.btnUpdatedNow);
             this.Controls.Add(this.btnCreatedNow);
             this.Controls.Add(this.dateUpdated);
@@ -202,7 +208,6 @@ namespace Employee_Manager.Forms
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtGender);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label2);
@@ -219,7 +224,6 @@ namespace Employee_Manager.Forms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtGender;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEmail;
@@ -232,5 +236,6 @@ namespace Employee_Manager.Forms
         private System.Windows.Forms.DateTimePicker dateUpdated;
         private System.Windows.Forms.Button btnCreatedNow;
         private System.Windows.Forms.Button btnUpdatedNow;
+        private System.Windows.Forms.ComboBox comboGender;
     }
 }

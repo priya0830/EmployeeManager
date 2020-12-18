@@ -1,5 +1,8 @@
 ﻿
 using Employee_Manager.Classes;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Employee_Manager.Forms
 {
@@ -9,6 +12,7 @@ namespace Employee_Manager.Forms
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private DataGridView dataGridView1;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -31,36 +35,48 @@ namespace Employee_Manager.Forms
         /// </summary>
         private void InitializeComponent(UsersData result)
         {
-            this.datagvViewDetails = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.datagvViewDetails)).BeginInit();
+            this.dgUserDetailsGrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgUserDetailsGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // datagvViewDetails
+            // dgUserDetailsGrid
             // 
-            this.datagvViewDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datagvViewDetails.Location = new System.Drawing.Point(91, 57);
-            this.datagvViewDetails.Name = "datagvViewDetails";
-            this.datagvViewDetails.RowHeadersWidth = 62;
-            this.datagvViewDetails.RowTemplate.Height = 28;
-            this.datagvViewDetails.Size = new System.Drawing.Size(1023, 445);
-            this.datagvViewDetails.TabIndex = 0;
-            this.datagvViewDetails.DataSource = result;
+            this.dgUserDetailsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgUserDetailsGrid.Location = new System.Drawing.Point(23, 22);
+            this.dgUserDetailsGrid.Name = "dgUserDetailsGrid";
+            this.dgUserDetailsGrid.RowHeadersWidth = 62;
+            this.dgUserDetailsGrid.RowTemplate.Height = 28;
+            this.dgUserDetailsGrid.Size = new System.Drawing.Size(1419, 565);
+            this.dgUserDetailsGrid.TabIndex = 0;
             // 
             // ViewDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1241, 671);
-            this.Controls.Add(this.datagvViewDetails);
+
+            var bindingList = new BindingList<User>((IList<User>)result.data);
+            var source = new BindingSource(bindingList, null);
+            this.dgUserDetailsGrid.DataSource = result.data;
+            
+            #region pagination info
+            int totalPages = result.meta.pagination.pages;
+            int limit = result.meta.pagination.limit;
+            int totalRecords = result.meta.pagination.total;
+            int currentPageNUmber = result.meta.pagination.page;
+            #endregion
+
+
+            this.ClientSize = new System.Drawing.Size(1703, 661);
+            this.Controls.Add(this.dgUserDetailsGrid);
             this.Name = "ViewDetails";
-            this.Text = "ViewDetails";
-            ((System.ComponentModel.ISupportInitialize)(this.datagvViewDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgUserDetailsGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
-        #endregion
-
-        private System.Windows.Forms.DataGridView datagvViewDetails;
+        
+        private DataGridView dgUserDetailsGrid;
     }
+
+
+
+    #endregion
 }
